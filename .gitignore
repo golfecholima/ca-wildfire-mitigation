@@ -1,5 +1,5 @@
 ## PROJECT STUFF
-
+*.DS_Store
 data/calfire
 data/usfs
 
