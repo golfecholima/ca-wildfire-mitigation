@@ -1,3 +1,10 @@
+## PROJECT STUFF
+
+data/calfire
+data/usfs
+
+## PYTHON STUFF
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

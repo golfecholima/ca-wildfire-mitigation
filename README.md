@@ -6,7 +6,7 @@ Clean and analyze USFS and CalFire wildfire mitigation efforts
 - Build file structure, write info .md files for each dir.
 - From root dir: 
   - `$ pipenv --three` 
-  - `$ pipenv install jupyterlab`
+  - `$ pipenv install jupyterlab numpy pandas`
   - `$ pipenv shell`
   - `$ jupyter lab`
 
