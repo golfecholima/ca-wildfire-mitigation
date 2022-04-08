@@ -14,4 +14,3 @@ In our case these files will likely live locally or in the cloud somewhere other
   - From: https://data.ca.gov/dataset/cal-fire-nonindustrial-timber-management-plans-and-notices-ta832
 - Prescribed burns: https://data.ca.gov/dataset/prescribed-burns5
 - CalMapper: TK from Mark Rosenberg who helped Clarke Knight extract her CalMapper data. This is a pull from their ESRI REST API
-

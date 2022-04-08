@@ -1,5 +1,7 @@
 ## PROJECT STUFF
 *.DS_Store
+.DS_Store
+*/.DS_Store
 data/source/calfire
 data/source/usfs
 
