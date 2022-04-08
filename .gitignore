@@ -1,7 +1,7 @@
 ## PROJECT STUFF
 *.DS_Store
-data/calfire
-data/usfs
+data/source/calfire
+data/source/usfs
 
 ## PYTHON STUFF
 
