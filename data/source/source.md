@@ -14,3 +14,8 @@ In our case these files will likely live locally or in the cloud somewhere other
   - From: https://data.ca.gov/dataset/cal-fire-nonindustrial-timber-management-plans-and-notices-ta832
 - Prescribed burns: https://data.ca.gov/dataset/prescribed-burns5
 - CalMapper: TK from Mark Rosenberg who helped Clarke Knight extract her CalMapper data. This is a pull from their ESRI REST API
+
+## Census
+
+- States: https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2020&layergroup=States+%28and+equivalent%29
+- Counties: https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2021&layergroup=Counties+%28and+equivalent%29
