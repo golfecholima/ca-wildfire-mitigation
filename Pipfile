@@ -8,6 +8,12 @@ jupyterlab = "*"
 numpy = "*"
 pandas = "*"
 geopandas = "*"
+shapely = "*"
+fiona = "*"
+pyproj = "*"
+rtree = "*"
+jupyternotify = "*"
+jupyterlab-notifications = "*"
 
 [dev-packages]
 
