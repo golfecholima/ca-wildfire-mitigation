@@ -7,6 +7,25 @@ data/source/usfs/*
 data/source/census/*
 data/source/Files\ to\ share\ with\ 7June\ R\ code\ 2/*
 
+### QGIS data
+qgis/grizzly-flats-trestle-qc/d-m-d-overlap-fx-thhaz-2002/
+qgis/grizzly-flats-trestle-qc/d-m-d-overlap-fx-thhaz-2009/
+qgis/grizzly-flats-trestle-qc/d-m-d-overlap-fx-thhaz-2018/
+qgis/grizzly-flats-trestle-qc/d-overlap-fx-haz-2002/
+qgis/grizzly-flats-trestle-qc/d-overlap-fx-haz-2009/
+qgis/grizzly-flats-trestle-qc/d-overlap-fx-haz-2018/
+qgis/grizzly-flats-trestle-qc/d-overlap-fx-th-2002/
+qgis/grizzly-flats-trestle-qc/d-overlap-fx-th-2009/
+qgis/grizzly-flats-trestle-qc/d-overlap-fx-th-2018/
+qgis/grizzly-flats-trestle-qc/fx-haz-2002/
+qgis/grizzly-flats-trestle-qc/fx-th-2002/
+qgis/grizzly-flats-trestle-qc/m-d-overlap-fx-thhaz-2002/
+qgis/grizzly-flats-trestle-qc/m-d-overlap-fx-thhaz-2009/
+qgis/grizzly-flats-trestle-qc/m-d-overlap-fx-thhaz-2018/
+qgis/grizzly-flats-trestle-qc/overlap-fx-haz-2002/
+qgis/grizzly-flats-trestle-qc/overlap-fx-th-2002/
+qgis/grizzly-flats-trestle-qc/fx-burn-severity/
+
 ## PYTHON STUFF
 
 # Byte-compiled / optimized / DLL files
