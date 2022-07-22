@@ -18,6 +18,10 @@
 * Run `Fix Geometry` on both sets save output as .gpkg `fx-haz-2002` and `fx-th-2002`
 
 * Drag and drop import Trestle Project (TP) boundary file, sourced from USFS Eldorado National Forest, accept QGIS default CRS transform. `TrestleProjectBoundary.gdb.zip`
+  
+* Drag and drop import burn severity data provided by USFS: `121721_CaldorTrestleDataRequest > Caldor20211215.gdb` using only the `Caldor_SoilBurnSeverity` layer. More information about what this type of burn severity analysis indicates is [available here](https://inciweb.nwcg.gov/incident/article/7842/66601/).
+
+* Repair the layer using `Fix geometries` saving the layer as `fx-burn-severity` using the .gpkg extension.
 
 ### Analysis
 * Run `Overlap Analysis` on each `fx-` layer using TP boundary as the overlay layer.
@@ -45,11 +49,25 @@
 
     * `NBR_UNITS_ACCOMPLISHED` = 5725
 
-* Repeat the above calculations by duplicating each overlap layer twice and filtering for projects completed on or after Jan 1, 2018 on one pair and projects completed on or after Jan 1, 2009 on the second pair.
+* Repeat the above calculations by duplicating each overlap layer twice and filtering for projects completed on or after Jan 1, 2018 on one pair and projects completed on or after Jan 1, 2009 on the second pair and projects completed on or after Jan 1, 2007 for the third pair.
 
-* The filters should look like this: `"DATE_COMPLETED">='2009-01-01T00:00:00.000' AND " TrestleProjectBoundary_pc">=25` and `"DATE_COMPLETED">='2018-01-01T00:00:00.000' AND " TrestleProjectBoundary_pc">=25`
+* The filters should look like this: `"DATE_COMPLETED">='2007-01-01T00:00:00.000' AND " TrestleProjectBoundary_pc">=25` and `"DATE_COMPLETED">='2009-01-01T00:00:00.000' AND " TrestleProjectBoundary_pc">=25` and `"DATE_COMPLETED">='2018-01-01T00:00:00.000' AND " TrestleProjectBoundary_pc">=25`
 
 * Results:
+
+  * From Jan 1, 2007
+
+    * `overlap-fx-haz-2007`
+
+      * `GIS_ACRES` = 10500
+
+      * `NBR_UNITS_ACCOMPLISHED` = 10006
+
+    * `overlap-fx-th-2007`
+  
+      * `GIS_ACRES` = 3894
+
+      * `NBR_ACRES_ACCOMPLISHED` = 3865
 
   * From Jan 1, 2009
 
@@ -94,12 +112,113 @@
 
   * Enter the output field name `QGIS_ACRES`
 
-  * In the Expression box enter `$area / 4046.86` (4046.86 is the number of square meters in an acres, QGIS defaults to square meters)
+  * In the Expression box enter `$area/4046.86` (4046.86 is the number of square meters in an acres, QGIS defaults to square meters)
 
 * Results
   * `d-m-d-overlap-fx-thhaz-2018` = 4021 total footprint acres
 
   * `d-m-d-overlap-fx-thhaz-2009` = 4397 total footprint acres
 
+  * `d-m-d-overlap-fx-thhaz-2007` = 4760 total footprint acres
+
   * `d-m-d-overlap-fx-thhaz-2002` = 7119 total footprint acres
- 
+
+#### Burn Severity
+
+* Calculate the burn severity in the treated areas and compare with burn severity in the overall Trestle Project boundary using the `Split vector layer`, `Clip` and `Intersection` functions.
+
+* Filter the `fx-burn-severity` layer to just the Trestle Project Boundary using the `Clip` function with the burn severity layer as the Input and the Trestle Project boundary layer as the overlay. Save it as `fx-burn-severity-clip-trestle` using the .gpkg extension.
+
+* Split that layer into separate layers using the `gridcode` column within the QGIS function `Split vector layer`, saving to a folder called `sbs-split`.
+
+* Import the four `gridcode_[#].gpkg` files generated to that folder using drag and drop. Rename in ascending order to `Unburned/Very Low`, `Low`, `Medium`, `High`.
+
+* Create a baseline burn severity for the Trestle Project by calculating the acreage of each burn severity category and dividing it by the acreage of the whole Trestle Project, each time using the same field calculator method as in the last section to calculate the acres of each of the five layers with `$area/4046.86`.
+
+**Baseline**
+* Results:
+  * `Trestle Project Boundary`: 20455 acres, 100 pct
+  * `High`: 8366 acres, 41 pct
+  * `Med`: 9285 acres, 45 pct
+  * `Low`: 2552 acres, 12 pct
+  * `Unburned/Very Low`: 197 acres, 1 pct
+**Note**: Percentages and acres do not add up to 100 and 20455 respectively because the Caldor Fire spared a small piece of the Western tip of the Trestle Project boundary. 
+
+* Use the `Clip` function on each `d-m-d-` layer by using the `d-m-d-` layer as the Input and one of the four split burn severity layers as the overlay. This should create 16 new layers in total 4 burn severity categories times four year layers = 16 burn severity/year pairings. Save each new layer using the `.gpkg` extension and the file naming convention `[YYYY]-[high/med/low/uvl]`.
+
+* As in the Footprint Acres section above, find the acres of each of the 16 new layers using the field calculator and the `$area/4046.86` formula naming the column `QGIS_ACRES_[HIGH/MED/LOW/UVL]` each time. 
+
+* Also add the percentage of the total footprint acres for each year delineation by using the field calculator again, this time creating a new column called `PCT_QGIS_ACRES_[HIGH/MED/LOW/UVL]` and using the formula `$area/4046.86/[total footprint acres figure from above for the corresponding year]`
+
+**Treated Acres**
+* Results
+  * `2018-high` = 1068 acres, .27
+  * `2018-med` = 2487 acres, .62
+  * `2018-low` = 452 acres, .11
+  * `2018-uvl` = 12 acres, .00
+
+  * `2009-high` = 1104 acres, .25
+  * `2009-med` =  2673 acres, .61
+  * `2009-low` =  558 acres, .13
+  * `2009-uvl` =  31 acres, .01
+
+  * `2007-high` = 1150 acres, .24
+  * `2007-med` =  2814 acres, .59
+  * `2007-low` =  650 acres, .14
+  * `2007-uvl` =  43 acres, .01
+
+  * `2002-high` = 2029 acres, .29
+  * `2002-med` = 3923 acres, .55
+  * `2002-low` = 748 acres, .11
+  * `2002-uvl` = 55 acres, .01
+
+**Note**: Some percentages do not add up to 100 because portions of some older treatments fall outside of the Trestle Project boundary or the Caldor Fire perimeter.
+
+* Calculate the same figures for the untreated areas using the formula: `([HIGH/MED/LOW/UVL] - [YYYY-HIGH/MED/LOW/UVL]) / ([TRESTLE PROJECT TOTAL ACREAGE] - [FOOTPRINTACRES])`
+
+* In other words to calculate the percent of high soil burn severity in untreated acres using treatments from 2018 onwards: `(High - 2018-high) / (Trestle Project Boundary QGIS_ACRES - d-m-d-overlap-fx-thhaz-2018 QGIS_ACRES)` OR `(8366 - 1068) / (20455 - 4021) = 0.44`
+
+**Untreated Acres**
+* Results:
+  * `2018-high (UNTREATED)` = 0.44
+  * `2018-med (UNTREATED)` = 0.41
+  * `2018-low (UNTREATED)` = 0.13
+  * `2018-uvl (UNTREATED)` = 0.01
+
+  * `2009-high (UNTREATED)` = 0.45
+  * `2009-med (UNTREATED)` = 0.41
+  * `2009-low (UNTREATED)` = 0.12
+  * `2009-uvl (UNTREATED)` = 0.01
+
+  * `2007-high (UNTREATED)` = 0.46
+  * `2007-med (UNTREATED)` = 0.41
+  * `2007-low (UNTREATED)` = 0.12
+  * `2007-uvl (UNTREATED)` = 0.01
+
+  * `2002-high (UNTREATED)` = 0.48
+  * `2002-med (UNTREATED)` = 0.40
+  * `2002-low (UNTREATED)` = 0.14
+  * `2002-uvl (UNTREATED)` = 0.01
+
+* Calculate the relative ratios by divding the untreated percentages by the treated percentages.
+
+* Results:
+  * `2018-high (RELATIVE RATIO)` = 1.67
+  * `2018-med (RELATIVE RATIO)` = 0.67
+  * `2018-low (RELATIVE RATIO)` = 1.14
+  * `2018-uvl (RELATIVE RATIO)` = 3.77
+
+  * `2009-high (RELATIVE RATIO)` = 1.80
+  * `2009-med (RELATIVE RATIO)` = 0.68
+  * `2009-low (RELATIVE RATIO)` = 0.98
+  * `2009-uvl (RELATIVE RATIO)` = 1.47
+
+  * `2007-high (RELATIVE RATIO)` = 1.90
+  * `2007-med (RELATIVE RATIO)` = 0.70
+  * `2007-low (RELATIVE RATIO)` = 0.89
+  * `2007-uvl (RELATIVE RATIO)` = 1.09
+
+  * `2002-high (RELATIVE RATIO)` = 1.67
+  * `2002-med (RELATIVE RATIO)` = 0.73
+  * `2002-low (RELATIVE RATIO)` = 1.29
+  * `2002-uvl (RELATIVE RATIO)` = 1.38

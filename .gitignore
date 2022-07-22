@@ -25,6 +25,18 @@ qgis/grizzly-flats-trestle-qc/m-d-overlap-fx-thhaz-2018/
 qgis/grizzly-flats-trestle-qc/overlap-fx-haz-2002/
 qgis/grizzly-flats-trestle-qc/overlap-fx-th-2002/
 qgis/grizzly-flats-trestle-qc/fx-burn-severity/
+qgis/grizzly-flats-trestle-qc/d-m-d-overlap-fx-thhaz-2007/
+qgis/grizzly-flats-trestle-qc/d-overlap-fx-haz-2007/
+qgis/grizzly-flats-trestle-qc/d-overlap-fx-th-2007/
+qgis/grizzly-flats-trestle-qc/fx-Medium/
+qgis/grizzly-flats-trestle-qc/fx-burn-severity-clip-trestle-split/
+qgis/grizzly-flats-trestle-qc/fx-burn-severity-clip-trestle/
+qgis/grizzly-flats-trestle-qc/m-d-overlap-fx-thhaz-2007/
+qgis/grizzly-flats-trestle-qc/print_layouts/
+qgis/grizzly-flats-trestle-qc/sbs-split/
+
+### Misc
+usda_oig_reports/
 
 ## PYTHON STUFF
 
