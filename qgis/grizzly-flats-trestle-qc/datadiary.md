@@ -139,29 +139,29 @@ _Calculate the soil burn severity in the treated areas and compare with burn sev
 
 * As in the Footprint Acres section above, find the acres of each of the 16 new layers using the field calculator and the `$area/4046.86` formula naming the column `QGIS_ACRES_[HIGH/MED/LOW/UVL]` each time. 
 
-* Also add the percentage of the total footprint acres for that year set by using the field calculator again, this time creating a new column called `PCT_QGIS_ACRES_[HIGH/MED/LOW/UVL]` and using the formula `$area/4046.86/[total footprint acres figure from above for the corresponding year]`
+* Also add the percentage of the total footprint acres for that year set by using the field calculator again, this time creating a new column called `PCT_QGIS_ACRES_[HIGH/MED/LOW/UVL]` and using the formula `$area/4046.86/[total footprint acres figure from above for the corresponding year]*100`
 
 **Treated Acres**
 * Results
-  * `2018-high` = 1068 acres, .27
-  * `2018-med` = 2487 acres, .62
-  * `2018-low` = 452 acres, .11
-  * `2018-uvl` = 12 acres, .00
+  * `2018-high` = 1068 acres, 27 pct
+  * `2018-med` = 2487 acres, 62 pct
+  * `2018-low` = 452 acres, 11 pct
+  * `2018-uvl` = 12 acres, 00 pct
 
-  * `2009-high` = 1104 acres, .25
-  * `2009-med` =  2673 acres, .61
-  * `2009-low` =  558 acres, .13
-  * `2009-uvl` =  31 acres, .01
+  * `2009-high` = 1104 acres, 25 pct
+  * `2009-med` =  2673 acres, 61 pct
+  * `2009-low` =  558 acres, 13 pct
+  * `2009-uvl` =  31 acres, 01 pct
 
-  * `2007-high` = 1150 acres, .24
-  * `2007-med` =  2814 acres, .59
-  * `2007-low` =  650 acres, .14
-  * `2007-uvl` =  43 acres, .01
+  * `2007-high` = 1150 acres, 24 pct
+  * `2007-med` =  2814 acres, 59 pct
+  * `2007-low` =  650 acres, 14 pct
+  * `2007-uvl` =  43 acres, 01 pct
 
-  * `2002-high` = 2029 acres, .29
-  * `2002-med` = 3923 acres, .55
-  * `2002-low` = 748 acres, .11
-  * `2002-uvl` = 55 acres, .01
+  * `2002-high` = 2029 acres, 29 pct
+  * `2002-med` = 3923 acres, 55 pct
+  * `2002-low` = 748 acres, 11 pct
+  * `2002-uvl` = 55 acres, 01 pct
 
 **Note**: Some percentages do not add up to 100 because portions of some older treatments fall outside of the Trestle Project boundary or the Caldor Fire perimeter.
 
@@ -173,25 +173,25 @@ _I switched to a spreadsheet for this part and let it do the figurin' using all 
 
 **Untreated Acres**
 * Results:
-  * `2018-high (UNTREATED)` = 0.44
-  * `2018-med (UNTREATED)` = 0.41
-  * `2018-low (UNTREATED)` = 0.13
-  * `2018-uvl (UNTREATED)` = 0.01
+  * `2018-high (UNTREATED)` = 44 pct
+  * `2018-med (UNTREATED)` = 41 pct
+  * `2018-low (UNTREATED)` = 13 pct
+  * `2018-uvl (UNTREATED)` = 01 pct
 
-  * `2009-high (UNTREATED)` = 0.45
-  * `2009-med (UNTREATED)` = 0.41
-  * `2009-low (UNTREATED)` = 0.12
-  * `2009-uvl (UNTREATED)` = 0.01
+  * `2009-high (UNTREATED)` = 45 pct
+  * `2009-med (UNTREATED)` = 41 pct
+  * `2009-low (UNTREATED)` = 12 pct
+  * `2009-uvl (UNTREATED)` = 01 pct
 
-  * `2007-high (UNTREATED)` = 0.46
-  * `2007-med (UNTREATED)` = 0.41
-  * `2007-low (UNTREATED)` = 0.12
-  * `2007-uvl (UNTREATED)` = 0.01
+  * `2007-high (UNTREATED)` = 46 pct
+  * `2007-med (UNTREATED)` = 41 pct
+  * `2007-low (UNTREATED)` = 12 pct
+  * `2007-uvl (UNTREATED)` = 01 pct
 
-  * `2002-high (UNTREATED)` = 0.48
-  * `2002-med (UNTREATED)` = 0.40
-  * `2002-low (UNTREATED)` = 0.14
-  * `2002-uvl (UNTREATED)` = 0.01
+  * `2002-high (UNTREATED)` = 48 pct
+  * `2002-med (UNTREATED)` = 40 pct
+  * `2002-low (UNTREATED)` = 14 pct
+  * `2002-uvl (UNTREATED)` = 01 pct
 
 * Calculate the relative ratios by divding the untreated percentages by the treated percentages.
 
