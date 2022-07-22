@@ -41,15 +41,11 @@
 
     * `GIS_ACRES` = 12799 
 
-    * `NBR_UNITS_ACCOMPLISHED` = 11901
-
   * `overlap-fx-th-2002`
 
     * `GIS_ACRES` = 5883
 
-    * `NBR_UNITS_ACCOMPLISHED` = 5725
-
-* Repeat the above calculations by duplicating each overlap layer twice and filtering for projects completed on or after Jan 1, 2018 on one pair and projects completed on or after Jan 1, 2009 on the second pair and projects completed on or after Jan 1, 2007 for the third pair.
+* Repeat the above calculations by duplicating each overlap layer thrice and filtering for projects completed on or after Jan 1, 2018 on one pair and projects completed on or after Jan 1, 2009 on the second pair and projects completed on or after Jan 1, 2007 for the third pair.
 
 * The filters should look like this: `"DATE_COMPLETED">='2007-01-01T00:00:00.000' AND " TrestleProjectBoundary_pc">=25` and `"DATE_COMPLETED">='2009-01-01T00:00:00.000' AND " TrestleProjectBoundary_pc">=25` and `"DATE_COMPLETED">='2018-01-01T00:00:00.000' AND " TrestleProjectBoundary_pc">=25`
 
@@ -60,8 +56,6 @@
     * `overlap-fx-haz-2007`
 
       * `GIS_ACRES` = 10500
-
-      * `NBR_UNITS_ACCOMPLISHED` = 10006
 
     * `overlap-fx-th-2007`
   
@@ -75,13 +69,9 @@
 
       * `GIS_ACRES` = 9881 
 
-      * `NBR_UNITS_ACCOMPLISHED` = 9464
-
     * `overlap-fx-th-2009`
 
       * `GIS_ACRES` = 3545
-
-      * `NBR_UNITS_ACCOMPLISHED` = 3563
 
   * From Jan 1, 2018
 
@@ -89,13 +79,9 @@
 
       * `GIS_ACRES` = 9272 
 
-      * `NBR_UNITS_ACCOMPLISHED` = 8847
-
     * `overlap-fx-th-2018`
 
       * `GIS_ACRES` = 3476
-
-      * `NBR_UNITS_ACCOMPLISHED` = 3495
 
 #### Footprint Acres
 * Flatten then merge the layers to calculate total **footprint acres** (only the total space treated, not including repeat treatments on the same area) by using QGIS `Dissolve` and `Merge vector layers`.
