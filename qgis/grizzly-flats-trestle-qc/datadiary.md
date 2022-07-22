@@ -142,6 +142,7 @@
   * `Med`: 9285 acres, 45 pct
   * `Low`: 2552 acres, 12 pct
   * `Unburned/Very Low`: 197 acres, 1 pct
+
 **Note**: Percentages and acres do not add up to 100 and 20455 respectively because the Caldor Fire spared a small piece of the Western tip of the Trestle Project boundary. 
 
 * Use the `Clip` function on each `d-m-d-` layer by using the `d-m-d-` layer as the Input and one of the four split burn severity layers as the overlay. This should create 16 new layers in total 4 burn severity categories times four year layers = 16 burn severity/year pairings. Save each new layer using the `.gpkg` extension and the file naming convention `[YYYY]-[high/med/low/uvl]`.
@@ -177,6 +178,8 @@
 * Calculate the same figures for the untreated areas using the formula: `([HIGH/MED/LOW/UVL] - [YYYY-HIGH/MED/LOW/UVL]) / ([TRESTLE PROJECT TOTAL ACREAGE] - [FOOTPRINTACRES])`
 
 * In other words to calculate the percent of high soil burn severity in untreated acres using treatments from 2018 onwards: `(High - 2018-high) / (Trestle Project Boundary QGIS_ACRES - d-m-d-overlap-fx-thhaz-2018 QGIS_ACRES)` OR `(8366 - 1068) / (20455 - 4021) = 0.44`
+
+_I switched to a spreadsheet for this part and let it do the figurin' using all the above QGIS generated numbers._
 
 **Untreated Acres**
 * Results:
