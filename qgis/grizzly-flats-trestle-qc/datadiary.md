@@ -40,17 +40,15 @@ _Calculate **activity acres** (Clarke Knight's term for including treatments tha
 
 * Results:
 
-  * `overlap-fx-haz-2002`
+  * `overlap-fx-haz-2002` > `GIS_ACRES` = 12799 
 
-    * `GIS_ACRES` = 12799 
-
-  * `overlap-fx-th-2002`
-
-    * `GIS_ACRES` = 5883
+  * `overlap-fx-th-2002` > `GIS_ACRES` = 5883
 
 * Repeat the above calculations by duplicating each overlap layer thrice and filtering for projects completed on or after Jan 1, 2018 on one pair, projects completed on or after Jan 1, 2009 on the second pair, and projects completed on or after Jan 1, 2007 for the third pair.
 
-  * The filters should look like this: `"DATE_COMPLETED">='2007-01-01T00:00:00.000' AND " TrestleProjectBoundary_pc">=25` and `"DATE_COMPLETED">='2009-01-01T00:00:00.000' AND " TrestleProjectBoundary_pc">=25` and `"DATE_COMPLETED">='2018-01-01T00:00:00.000' AND " TrestleProjectBoundary_pc">=25`
+  * The filters should look like this: 
+  `"DATE_COMPLETED">='2007-01-01T00:00:00.000' AND "TrestleProjectBoundary_pc">=25`
+  `"DATE_COMPLETED">='2009-01-01T00:00:00.000' AND "TrestleProjectBoundary_pc">=25` `"DATE_COMPLETED">='2018-01-01T00:00:00.000' AND "TrestleProjectBoundary_pc">=25`
 
   * Rename each layer with the corresponding year: `overlap-fx-haz-2007`, `overlap-fx-th-2009`, etc.
 
@@ -58,35 +56,21 @@ _Calculate **activity acres** (Clarke Knight's term for including treatments tha
 
   * From Jan 1, 2007
 
-    * `overlap-fx-haz-2007`
+    * `overlap-fx-haz-2007` > `GIS_ACRES` = 10500
 
-      * `GIS_ACRES` = 10500
-
-    * `overlap-fx-th-2007`
-  
-      * `GIS_ACRES` = 3894
-
-      * `NBR_ACRES_ACCOMPLISHED` = 3865
+    * `overlap-fx-th-2007` > `GIS_ACRES` = 3894
 
   * From Jan 1, 2009
 
-    * `overlap-fx-haz-2009`
+    * `overlap-fx-haz-2009` > `GIS_ACRES` = 9881 
 
-      * `GIS_ACRES` = 9881 
-
-    * `overlap-fx-th-2009`
-
-      * `GIS_ACRES` = 3545
+    * `overlap-fx-th-2009` > `GIS_ACRES` = 3545
 
   * From Jan 1, 2018
 
-    * `overlap-fx-haz-2018`
+    * `overlap-fx-haz-2018` > `GIS_ACRES` = 9272 
 
-      * `GIS_ACRES` = 9272 
-
-    * `overlap-fx-th-2018`
-
-      * `GIS_ACRES` = 3476
+    * `overlap-fx-th-2018` > `GIS_ACRES` = 3476
 
 
 #### Footprint Acres
@@ -197,7 +181,7 @@ _For the next part, I switched to a spreadsheet and let it do the figurin' using
 
 **Note**: Some percentages do not add up to 100 because portions of some older treatments fall outside of the Trestle Project boundary or the Caldor Fire perimeter.
 
-* Calculate the relative ratios by divding the untreated percentages by the treated percentages.
+* Calculate the relative ratios by dividing the untreated percentages by the treated percentages.
 
 * Results:
   * `2018-high (RELATIVE RATIO)` = 1.67
