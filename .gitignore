@@ -34,6 +34,18 @@ qgis/grizzly-flats-trestle-qc/fx-burn-severity-clip-trestle/
 qgis/grizzly-flats-trestle-qc/m-d-overlap-fx-thhaz-2007/
 qgis/grizzly-flats-trestle-qc/print_layouts/
 qgis/grizzly-flats-trestle-qc/sbs-split/
+qgis/big-bear/big-bear-qc/fix geometries/
+qgis/big-bear/d-ex-haz-2007/
+qgis/big-bear/d-ex-nepa/
+qgis/big-bear/d-fx-ex-haz-2007/
+qgis/big-bear/ex-haz-2007/
+qgis/big-bear/ex-nepa/
+qgis/big-bear/fx-ex-haz-2007/
+qgis/big-bear/merged-bb-fuels-reduction/d-north-magic.gpkg
+qgis/big-bear/merged-bb-fuels-reduction/merged-bb-fuels-reduction.gpkg
+qgis/grizzly-flats-trestle-qc/fx-rdnbr-ba7/
+qgis/grizzly-flats-trestle-qc/rdnbr-ba7-split/
+qgis/grizzly-flats-trestle-qc/rdnbr-split/
 
 ### Misc
 usda_oig_reports/
