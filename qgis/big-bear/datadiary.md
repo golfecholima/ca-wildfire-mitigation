@@ -46,6 +46,18 @@ _Calculate **activity acres** (Clarke Knight's term for including treatments tha
   * `fx-nepa` > `GIS_ACRES` = 8856
   * `fx-nbb` > `GIS_ACRES` = 12919
   * `fx-saw` > `acres` = 5887
+    * `fx-haz` treatment type breakdown. (Calculated using summary stats on layer's tabular data in Visidata.)
+
+|TREATMENT\_TYPE    |PCT  |
+|-------------------|----:|
+|Thinning           |42   |
+|Chipping           |17   |
+|Machine Pile       |13   |
+|Crushing           |10   |
+|Machine Pile Burn  |10   |
+|Lop and Scatter    |2    |
+|Broadcast Burn     |1    |
+|Biomass Removal    |1    |
 
 #### Footprint Acres
 _'Flatten' layers to calculate total **footprint acres** (only the total space treated, not including repeat treatments on the same area) by using the QGIS `Dissolve` function._
