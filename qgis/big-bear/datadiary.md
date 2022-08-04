@@ -8,8 +8,9 @@
     * [North Big Bear Fuels Reduction Project](https://ftp.wildfire.gov/public/incident_specific_data/Fuels/CA_BDF/Shapefiles/NBB_PROJECT_BOUNDARY_20200805.zip)
     * [Santa Ana Watershed Hazardous Fuels Reduction Project](https://ftp.wildfire.gov/public/incident_specific_data/Fuels/CA_BDF/Shapefiles/SouthForkPerimeter_south38andBartonFlats_07062022.zip)
     * [Ranger District Boundaries — ESRI geodatabase](https://data.fs.usda.gov/geodata/edw/edw_resources/fc/S_USA.RangerDistrict.gdb.zip)
-    _Note: Exclusion of timber harvest data is based on feedback from San Bernardino National Forest FACTS specialist that all timber harvest treatments intended to address fuels reduction are duplicated in the Hazardous Fuel Treatment dataset._
     * Hazardous fuel downloaded on 7/6/22, NEPA projects on 7/15/22, North Big Bear and Santa Ana projects on 7/29/22, and Ranger District on 7/25/22.
+
+_Note: Exclusion of timber harvest data is based on feedback from San Bernardino National Forest FACTS specialist that all timber harvest treatments intended to address fuels reduction are duplicated in the Hazardous Fuel Treatment dataset._
 
 * Drag and drop import to new QGIS document
 
@@ -28,7 +29,8 @@
   * nbb: na
   * saw: na
   * rd: `"DISTRICTNUMBER"='52' AND "FORESTNAME" = 'San Bernardino National Forest'`
-  _Note: NEPA data includes projects that are beyond the scope of Hazardous Fuels Treatment, hence filtering for the word 'FUEL'._
+
+_Note: NEPA data includes projects that are beyond the scope of Hazardous Fuels Treatment, hence filtering for the word 'FUEL'._
 
 * Run `Fix geometries` on all datasets save output as .gpkg with naming convention `fx-[ABBREVIATED NAME]`
 
