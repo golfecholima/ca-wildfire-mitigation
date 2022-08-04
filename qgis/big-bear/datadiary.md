@@ -42,11 +42,11 @@ _Calculate **activity acres** (Clarke Knight's term for including treatments tha
 * Select the following layer and column combos in the statistical summary box in the bottom left corner. Record the sum:
 
 * Results:
-  * `fx-haz` > `GIS_ACRES` = 28432 
+  * `fx-haz` > `GIS_ACRES` = 28432
+    * `fx-haz` treatment types breakdown in table below. (Calculated using summary stats on layer's tabular data in Visidata.)
   * `fx-nepa` > `GIS_ACRES` = 8856
   * `fx-nbb` > `GIS_ACRES` = 12919
   * `fx-saw` > `acres` = 5887
-    * `fx-haz` treatment type breakdown. (Calculated using summary stats on layer's tabular data in Visidata.)
 
 |TREATMENT\_TYPE    |PCT  |
 |-------------------|----:|
