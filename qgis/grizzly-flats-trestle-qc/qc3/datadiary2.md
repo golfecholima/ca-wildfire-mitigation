@@ -92,6 +92,7 @@ _Flatten and merge the layers to calculate total **footprint acres** (again the 
 
 ### Findings:
 * Trestle Project completed activity acres = 4396
+* Trestle Project completed and in progress footprint acres = 8983
 * Trestle Project planned activity acres = 15212
 * Trestle project completed footprint acres = 2137
 * Trestle Project completed and in progress footprint acres = 4740
