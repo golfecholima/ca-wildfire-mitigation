@@ -3,6 +3,7 @@
 _Revisions based on feedback from USFS GIS specialist._
 
 ### Prep
+
 * Set QGIS project CRS to `WGS 84 / Pseudo-Mercator EPSG:3857`
 * Import via drag and drop, accepting default CRS transformations: **CHECK DATES W/ ZENTER**
   * `CaldorArea_FACTS_20220128.gdb`: USFS Eldorado National Forest provided January 2022. Completed treatments within the forest and the Trestle Project specifically.
@@ -54,6 +55,7 @@ _Revisions based on feedback from USFS GIS specialist._
 ### Analysis
 
 #### Activity Acres
+
 _Calculate **activity acres** (the term used by Clarke Knight, et al [in this paper](https://static1.squarespace.com/static/545a90ede4b026480c02c5c7/t/61a52861dfd0aa6784b117bb/1638213736182/Knight+et+al.+2022.pdf) for including treatments that overlap) using `View > Show statistical summary` function in QGIS._
 
 * Click `View > Show statistical summary`
@@ -69,6 +71,7 @@ _Calculate **activity acres** (the term used by Clarke Knight, et al [in this pa
   * fx-tbo = 10131[^3]
 
 #### Footprint Acres
+
 _Flatten and merge the layers to calculate total **footprint acres** (again the term used by Knight et al to describe only the total space treated, not including repeat treatments on the same acreage) by using QGIS `Dissolve` and `Merge vector layers`._
 
 * Run the Dissolve function on each of fx-ctp, fx-cop, fx-tdu, fx-tbo saving each new layer as a .gpkg using the naming convention `d-fx-[abbreviation]`.
@@ -91,6 +94,7 @@ _Flatten and merge the layers to calculate total **footprint acres** (again the 
   * d-m-d-fx-tbotdu = 15194[^6]
 
 ### Findings:
+
 * Trestle Project completed activity acres = 4396
 * Trestle Project completed and in progress footprint acres = 8983
 * Trestle Project planned activity acres = 15212
