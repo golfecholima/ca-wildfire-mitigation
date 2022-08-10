@@ -68,7 +68,7 @@ _Calculate **activity acres** (the term used by Clarke Knight, et al [in this pa
   * fx-ptp = 8983[^2]
   * fx-cop = 68134
   * fx-tdu = 5081[^3]
-  * fx-tbo = 10131[^3]
+  * fx-tbo = 10124[^3]
 
 #### Footprint Acres
 
@@ -97,14 +97,40 @@ _Flatten and merge the layers to calculate total **footprint acres** (again the 
 
 * Trestle Project completed activity acres = 4396
 * Trestle Project completed and in progress footprint acres = 8983
-* Trestle Project planned activity acres = 15212
+* Trestle Project planned activity acres = 15205
 * Trestle project completed footprint acres = 2137
 * Trestle Project completed and in progress footprint acres = 4740
 * Trestle project planned footprint acres = 15194
 
 [^1]: Trestle Project completed activity acres.
 [^2]: Trestle Project completed and in progress activity acres.
-[^3]: Trestle Project planned activity acres `fx-tdu + fx-tbo` = `5081 + 10131` = 15212.
+[^3]: Trestle Project planned activity acres `fx-tdu + fx-tbo` = `5081 + 10124` = 15205.
 [^4]: Trestle project completed footprint acres.
 [^5]: Trestle Project completed and in progress footprint acres.
 [^6]: Trestle project planned footprint acres. _Note: This is only five acres less than the combined footprint acres of `fx-tbo` and `fx-tdu` (10119 + 5080 = 15199) before any dissolving or merging; that's very little overlap._
+
+
+### TO ADD
+
+#### Buffers
+* 2, 3 and 5 miles buffer calculated on fx-gf-epsg-3857 adding b#- naming
+* Clip cop by b5 layer
+  * Calculate activity and footprint acres.
+  * Result:
+    * cp-fx-cop-b5 = 10722 activity acres
+    * d-cp-fx-cop-b5 = 3816 footprint acres
+
+COP
+activity 68134
+footprint 30743
+
+|ACTIVITY	|SUM of QGIS_ACRES 	|PCT|
+|---------|-------------------|---|
+|Burning of Piled Material|	243|	0.06|
+|Commercial Thin|	1615|	0.37|
+|Compacting/Crushing of Fuels|	265|	0.06|
+|Piling of Fuels, Hand or Machine| 	269|	0.06|
+|Precommercial Thin|	806|	0.18|
+|Thinning for Hazardous Fuels Reduction|	392|	0.09|
+|Yarding - Removal of Fuels by Carrying or Dragging|	806|	0.18|
+|Grand Total|	4396|	1.00|
