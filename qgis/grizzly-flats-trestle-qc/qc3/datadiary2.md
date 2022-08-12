@@ -5,24 +5,22 @@ _Revisions based on feedback from USFS GIS specialist._
 ### Prep
 
 * Set QGIS project CRS to `WGS 84 / Pseudo-Mercator EPSG:3857`
-* Import via drag and drop, accepting default CRS transformations: **CHECK DATES W/ ZENTER**
-  * `CaldorArea_FACTS_20220128.gdb`: USFS Eldorado National Forest provided January 2022. Completed treatments within the forest and the Trestle Project specifically.
+* Import via drag and drop, accepting default CRS transformations:
+  * `CaldorArea_FACTS_20220128.gdb`: USFS Eldorado National Forest provided Jan. 28, 2022. Completed treatments within the forest and the Trestle Project specifically.
     * Layers:
       * `FACTS_CompletedProjects_MinusTrestle_20220128`
       * `FACTS_TrestleProject_20220128`
   * `tl_2021_06_place`: 2021 Census California place data retrieved Aug. 5, 2022. Includes Grizzly Flats boundary.
-  * `TrestleTreatmentUnits.gdb`: USFS Eldorado National Forest provided February 2022. Planned treatments in the Trestle Project.
+  * `TrestleTreatmentUnits.gdb`: USFS Eldorado National Forest provided Feb. 17, 2022. Planned treatments in the Trestle Project.
     * Layers:
       * `Trestle_Decision_Units_201709`
       * `Trestle_DraftEIS_Alt5_BurnOnly`
-  * `TrestleProjectBoundary.gdb`: USFS Eldorado National Forest provided April 2022.
-* Make a copy of `FACTS_TrestleProject_20220128`, yields `FACTS_TrestleProject_20220128 copy` 
+  * `TrestleProjectBoundary.gdb`: USFS Eldorado National Forest provided April 29, 2022.
 
 * Naming abbreviations to be followed throughout:
   * tpb = TrestleProjectBoundary
   * gf = tl_2021_06_place
   * ctp = FACTS_TrestleProject_20220128
-  * ptp = FACTS_TrestleProject_20220128 copy
   * cop = FACTS_CompletedProjects_MinusTrestle_20220128
   * tdu = Trestle_Decision_Units_201709
   * tbo = Trestle_DraftEIS_Alt5_BurnOnly
@@ -33,20 +31,20 @@ _Revisions based on feedback from USFS GIS specialist._
     * Include only the town of Grizzly Flats.
   * ctp: `"DATE_COMPLETED">='2018-01-01T00:00:00.000'`
     * Include only treatments that were completed on or after Jan. 1, 2018, the year Trestle broke ground.
-  * ptp: `"STATUS" IN ('Completed','Under Contract and In Progress')`
-    * Include only treatments that have the status Completed or Under Contract and In Progress. **DOUBLE CHECK IF THIS IS THE CORRECT WAY TO FILTER FOR THESE**
   * cop: `"DATE_COMPLETED">='2007-01-01T00:00:00.000'`
     * Include only treatments that were completed on or after Jan. 1, 2007, the maximum amount of time subject matter experts say treatments in an Eldorado-type forest are viable.
   * tdu: `"Treatment" NOT IN ('Rx Burn','Rx Burn - High Priority','No Understory Burn')`
-    * Include only planned treatments other than Rx burn from this dataset per USFS Eldorado National Forest GIS specialist. 'No understory burn' indicates areas not planned for treatment in the Trestle Project and are therefore also filtered out. **< DOUBLE CHECK**
+    * Include only planned treatments other than Rx burn from this dataset per USFS Eldorado National Forest GIS specialist. 'No understory burn' indicates areas not planned for treatment in the Trestle Project and are therefore also filtered out.
   * tbo: Not applicable, dataset shows all planned understory prescribed burns. Use this set for understory prescribed fire instead of `tdu`.
+  * cp819: Not applicable, this data includes only the fire perimeter on Aug. 19 as reported by the U.S. Forest Service.
 
 * Run QGIS function `Fix geometries` on all layers saving as `.gpkg` files with naming convention `fx-[abbreviation]`.
 
-* Calculate the area of every shape of every `fx-` layer using QGIS: **CHECK COLUMNS BEING USED FOR AREA/ACREAGE**
+* Calculate the area of every shape of every `fx-` layer using QGIS:
   * Right click layer > Open Attribute Table
     * Open field calculator (Ctrl/Cmd + i)
       * `Output field name` = QGIS_ACRES
+      * `Output field type` = Decimal number (real)
       * `Expression` = $area/4046.86
       * Click `OK`
       * Toggle editing mode (Ctrl/Cmd + E)
@@ -64,11 +62,10 @@ _Calculate **activity acres** (the term used by Clarke Knight, et al [in this pa
 * Results:
   * fx-tpb = 20455
   * fx-gf = 4242
-  * fx-ctp = 4396[^1]
-  * fx-ptp = 8983[^2]
-  * fx-cop = 68134
-  * fx-tdu = 5081[^3]
-  * fx-tbo = 10124[^3]
+  * fx-ctp = 4399[^1]
+  * fx-cop = 68176
+  * fx-tdu = 5082[^2]
+  * fx-tbo = 10127[^2]
 
 #### Footprint Acres
 
@@ -78,8 +75,7 @@ _Flatten and merge the layers to calculate total **footprint acres** (again the 
 * Using the same method for calculating area as in the **Prep** section, calculate the area of each dissolved layer naming the column `d_QGIS_ACRES`.
 
 * Results:
-  * d-fx-ctp = 2137[^4]
-  * d-fx-ptp = 4740[^5]
+  * d-fx-ctp = 2137[^3]
   * d-fx-cop = 30743
   * d-fx-tdu = 5080
   * d-fx-tbo = 10119
@@ -91,46 +87,60 @@ _Flatten and merge the layers to calculate total **footprint acres** (again the 
 * Calculate the acreage again using the method in the **Prep** section.
 
 * Result:
-  * d-m-d-fx-tbotdu = 15194[^6]
+  * d-m-d-fx-tbotdu = 15194[^4]
+
+#### Buffers, clips and slicing the data.
+
+_Create a five mile perimeter from the border of Grizzly Flats to evaluate treatments beyond the Trestle Project perimeter. Use the QGIS function `Buffer` to create the five mile perimeter and the `Clip` function to limit the various treatments to within that buffer._
+
+**Create buffers**
+* Right click the `fx-gf` layer and select `Export > Save Features As`.
+* Enter the following:
+  * File name: `epsg-3857-fx-gf`
+  * Layer name: `epsg-3857-fx-gf`
+  * CRS: `EPSG:3857 - WGS 84 / Pseudo-Mercator`
+  * Leave the rest to defaults
+  * Check the `Add saved file to map` box
+  * Click `OK`
+  * This adds a layer that changes the coordinate reference system of the `fx-gf` layer to be able to do calculations in meters rather than degrees, which matters for the upcoming buffer calculation.
+* Use the `Buffer` function with the following parameters:
+  * Input layer: `epsg-3857-fx-gf`
+  * Distance: `8046.72` (The number of meters in five miles.)
+  * Segments: `20`
+  * End cap style: `Round`
+  * Join style: `Round`
+  * Miter limit: `2`
+  * Save as: `b5-epsg-3857-fx-gf`
+  * Click `Run`
+  * Result is the Grizzly Flats town border extended in all directions by five miles.
+
+**Clip using the buffer**
+* Run the `Clip` function on the `fx-cop` and the `fx-ctp` layer using the `fx-` layers as the input and the `b5-epsg-3857-fx-gf` layer as the overlay. Save each as `cb5-[INPUT LAYER NAME]`. This provides completed treatments that fall within a five mile buffer of Grizzly Flats.
+* Calculate the activity acres using the field calculator and show statistical summary, as above.
+  
+* Results:
+  * cb5-fx-cop = 10735.7 activity acres
+  * cb5-fx-ctp = 4399.14 activity acres
+  * Combined = 15135 activity acres
+
+* Use `Merge`, `Dissolve`, and the field calculator as above to calculate footprint acres. Save using the same `d-` and `m-` naming conventions.
+
+  * Result:
+    * d-m-cb5-fx-ctpcop = 5845
+
+_Note: This same buffer and clip method was used to calculate various figures in the story and as a gut check various source claims and our own assumptions. We also frequently exported the tabular data from these GIS files and used pivot tables to evaluate the prevalence and breakdown of different treatment types._ 
 
 ### Findings:
 
-* Trestle Project completed activity acres = 4396
-* Trestle Project completed and in progress activity acres = 8983
-* Trestle Project planned activity acres = 15205
-* Trestle project completed footprint acres = 2137
-* Trestle Project completed and in progress footprint acres = 4740
-* Trestle project planned footprint acres = 15194
+#### As seen in: Stalled U.S. Forest Service project could have protected California town from Caldor Fire destruction
+* The Trestle Project planned to treat 15209 acres (total planned treatment acres including overlapping treatments)
+* The Trestle Project planned footprint acres = 15194 (total planned treatment acres less any overlapping treatment areas)
+* The Forest Service completed 2137 footprint acres of the Trestle Project or 14% of the total planned footprint acres.[^5]
+* The Forest Service completed 1182 footprint acres from 2003 to 2007 within 1 mile buffer off southern border. (Includes the entirety of any treatment that was at least partially within that border).
+* From Jan. 1, 2007 to the Caldor Fire ignition date, the Forest Service completed 15135 activity acres within a five mile Grizzly Flats buffer. The majority of that acreage happened beyond the a three mile buffer.
 
 [^1]: Trestle Project completed activity acres.
-[^2]: Trestle Project completed and in progress activity acres.
-[^3]: Trestle Project planned activity acres `fx-tdu + fx-tbo` = `5081 + 10124` = 15205.
-[^4]: Trestle project completed footprint acres.
-[^5]: Trestle Project completed and in progress footprint acres.
-[^6]: Trestle project planned footprint acres. _Note: This is only five acres less than the combined footprint acres of `fx-tbo` and `fx-tdu` (10119 + 5080 = 15199) before any dissolving or merging; that's very little overlap._
-
-
-### TO ADD
-
-#### Buffers
-* 2, 3 and 5 miles buffer calculated on fx-gf-epsg-3857 adding b#- naming
-* Clip cop by b5 layer
-  * Calculate activity and footprint acres.
-  * Result:
-    * cp-fx-cop-b5 = 10722 activity acres
-    * d-cp-fx-cop-b5 = 3816 footprint acres
-
-COP
-activity 68134
-footprint 30743
-
-|ACTIVITY	|SUM of QGIS_ACRES 	|PCT|
-|---------|-------------------|---|
-|Burning of Piled Material|	243|	0.06|
-|Commercial Thin|	1615|	0.37|
-|Compacting/Crushing of Fuels|	265|	0.06|
-|Piling of Fuels, Hand or Machine| 	269|	0.06|
-|Precommercial Thin|	806|	0.18|
-|Thinning for Hazardous Fuels Reduction|	392|	0.09|
-|Yarding - Removal of Fuels by Carrying or Dragging|	806|	0.18|
-|Grand Total|	4396|	1.00|
+[^2]: Trestle Project planned activity acres `fx-tdu + fx-tbo` = `5082 + 10127` = 15209.
+[^3]: Trestle Project completed footprint acres.
+[^4]: Trestle Project planned footprint acres.
+[^5]: The same methodology was used on the Forest Service's public-facing database "FACTS". The result was 4021 acres and 24% of the planned footprint, which prompted the agency to realize that several treatments in FACTS had been erroneously marked complete. That process is [available here](https://github.com/golfecholima/ca-wildfire-mitigation/blob/main/qgis/grizzly-flats-trestle-qc/datadiary.md) NOTE: DO NOT PUBLISH ANY FIGURES FROM THAT DOCUMENT, THERE IS A HIGH LIKELIHOOD THEY ARE WRONG.

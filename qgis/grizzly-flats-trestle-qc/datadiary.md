@@ -1,3 +1,5 @@
+# !!!ALERT, CONTAINS ERRORS, DO NOT USE FOR PUBLICATION!!!
+
 # Grizzly Flats Trestle Analysis Data Diary
 
 ### Prep
