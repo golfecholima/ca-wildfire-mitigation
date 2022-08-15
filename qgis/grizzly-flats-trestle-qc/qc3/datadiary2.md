@@ -1,6 +1,6 @@
 # Grizzly Flats Trestle Analysis Data Diary 2
 
-_Revisions based on feedback from USFS GIS specialist._
+_Revisions based on feedback from USFS GIS specialist and corrected data provided by USFS._
 
 ### Prep
 
@@ -36,7 +36,6 @@ _Revisions based on feedback from USFS GIS specialist._
   * tdu: `"Treatment" NOT IN ('Rx Burn','Rx Burn - High Priority','No Understory Burn')`
     * Include only planned treatments other than Rx burn from this dataset per USFS Eldorado National Forest GIS specialist. 'No understory burn' indicates areas not planned for treatment in the Trestle Project and are therefore also filtered out.
   * tbo: Not applicable, dataset shows all planned understory prescribed burns. Use this set for understory prescribed fire instead of `tdu`.
-  * cp819: Not applicable, this data includes only the fire perimeter on Aug. 19 as reported by the U.S. Forest Service.
 
 * Run QGIS function `Fix geometries` on all layers saving as `.gpkg` files with naming convention `fx-[abbreviation]`.
 
@@ -80,7 +79,7 @@ _Flatten and merge the layers to calculate total **footprint acres** (again the 
   * d-fx-tdu = 5080
   * d-fx-tbo = 10119
 
-* Dissolving the `fx-ctp` layer yields footprint acres for complete Trestle Project treatments right away. However, since planned acreage is divided into a prescribed burn set `fx-tbo` and  other treatments `fx-tdu`, we want to combine those sets. We'll do this by merging the two sets and dissolving again.
+* Dissolving the `fx-ctp` layer yields footprint acres for complete Trestle Project treatments right away. However, since planned acreage is divided into a prescribed burn set `fx-tbo` and other treatments `fx-tdu`, we want to combine those sets. We'll do this by merging the two sets and dissolving again.
 * Delete all fields except `fid` and `d_QGIS_ACRES` from the dissolved layers by right clicking on each layer and selecting `Layer properties > Fields`. (This is because some of the fields have conflicts when being merged and they're not being used for anything anyway because the dissolve function mashes all the shape components into one big shape. So if anything they're wrong and could cause confusion.)
 * Merge the `fx-tbo` and `fx-tdu` layers using the Merge vector layers function. Save using the naming convention `m-d-fx-tbotdu.gpkg`.
 * This produces a layer with two shapes. Dissolve again, combining those two shapes. Save as `d-m-d-fx-tbotdu.gpkg`.
@@ -136,8 +135,8 @@ _Note: This same buffer and clip method was used to calculate various figures in
 * The Trestle Project planned to treat 15209 acres (total planned treatment acres including overlapping treatments)
 * The Trestle Project planned footprint acres = 15194 (total planned treatment acres less any overlapping treatment areas)
 * The Forest Service completed 2137 footprint acres of the Trestle Project or 14% of the total planned footprint acres.[^5]
-* The Forest Service completed 1182 footprint acres from 2003 to 2007 within 1 mile buffer off southern border. (Includes the entirety of any treatment that was at least partially within that border).
-* From Jan. 1, 2007 to the Caldor Fire ignition date, the Forest Service completed 15135 activity acres within a five mile Grizzly Flats buffer. The majority of that acreage happened beyond the a three mile buffer.
+* The Forest Service completed 1182 footprint acres from 2003 to 2007 within 1 mile buffer off southern border. (Includes the entirety of any treatment that was at least partially within that border.)
+* From Jan. 1, 2007 to the Caldor Fire ignition date, the Forest Service completed 15135 activity acres within a five mile buffer of Grizzly Flats. The majority of that acreage happened beyond three miles.
 
 [^1]: Trestle Project completed activity acres.
 [^2]: Trestle Project planned activity acres `fx-tdu + fx-tbo` = `5082 + 10127` = 15209.
